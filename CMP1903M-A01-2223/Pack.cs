@@ -10,19 +10,18 @@ namespace CMP1903M_A01_2223
 {
     class Pack
     {
+        //Initialise the card pack here
         public static List<Card> pack = new List<Card>();
         //To split card pack into two
         public static List<Card> packFirst = new List<Card>();
         public static List<Card> packSecond = new List<Card>();
-        public Random random;
+        public static Random random = new Random();
         //Dealt cards
         public static List<Card> dealtCards = new List<Card>();
 
 
         public Pack()
         {
-            //Initialise the card pack here
-            pack = new List<Card>();
             //For every suit, card values are needed
             for (int suit = 1; suit < 5; suit++)
             {
@@ -34,20 +33,20 @@ namespace CMP1903M_A01_2223
 
         }
 
-        public static bool shuffleCardPack(int typeOfShuffle)
+        public bool shuffleCardPack(int typeOfShuffle)
         {
             //Shuffles the pack based on the type of shuffle
             //Fisher-Yates Shuffle
             if (typeOfShuffle == 1)
             {
-                int n = pack.Length;
-                for (int i = 0; i < (n-1); i++)
+                for (int n = pack.Count -1; n > 0; --n)
                 {
-                    int r = i + random.Next(n-1);
-                    Card t = pack[r];
-                    pack[r] = pack[i];
-                    pack[i] = t;
+                    int k = random.Next(n + 1);
+                    var temp = pack[n];
+                    pack[n] = pack[k];
+                    pack[k] = temp;
                 }
+                Console.WriteLine("SHUFFLED");
                 return true;
             }
 
@@ -66,6 +65,7 @@ namespace CMP1903M_A01_2223
                     i++;
                     j++;
                 }
+                Console.WriteLine("SHUFFLED");
                 return true;
             }
 
@@ -79,11 +79,11 @@ namespace CMP1903M_A01_2223
             else { return false; } //Exception
 
         }
-        public static Card deal()
+        public Card deal()
         {
             //Deals one card
             dealtCards.Clear();
-            if (pack.Length == 0)
+            if (pack.Count == 0)
             {
                 Console.WriteLine("The deck is empty");
                 return null;
@@ -97,16 +97,16 @@ namespace CMP1903M_A01_2223
             }
 
         }
-        public static List<Card> dealCard(int amount)
+        public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
-            dealtCards.clear();
-            if (pack.Length == 0)
+            dealtCards.Clear();
+            if (pack.Count == 0)
             {
                 Console.WriteLine("The deck is empty");
                 return null;
             }
-            else if (pack.Length < amount)
+            else if (pack.Count < amount)
             {
                 Console.WriteLine($"There are not enough cards in pack to deal {amount} cards");
                 return null;
@@ -119,7 +119,9 @@ namespace CMP1903M_A01_2223
                     Card topCard = pack[0];
                     pack.RemoveAt(0);
                     dealtCards.Add(topCard);
+                    topCard.Meaning();
                 }
+
                 return dealtCards;
             }
         }

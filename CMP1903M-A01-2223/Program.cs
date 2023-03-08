@@ -10,7 +10,9 @@ namespace CMP1903M_A01_2223
     {
         static void Main(string[] args)
         {
-            Testing test = new Testing()   
+            Testing test = new Testing();
+            Console.WriteLine("DONE");
+            Console.ReadKey();
         }
     }
 }
