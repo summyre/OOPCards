@@ -22,10 +22,10 @@ namespace CMP1903M_A01_2223
             get { return mValue; } 
             set
             {
-                if (value < 1) || (value > 13)
+                if ((value < 1) || (value > 13))
                 {
                     //exception handling
-                    throw new ArithmeticException("Value out of range (1-13)")
+                    throw new ArithmeticException("Value out of range (1-13)");
                 }
                 else
                 {
@@ -40,10 +40,10 @@ namespace CMP1903M_A01_2223
             get { return mSuit; }
             set
             {
-                if (value < 1) || (value > 4)
+                if ((value < 1) || (value > 4))
                 {
                     //exception handling
-                    throw new ArithmeticException("Value out of range (1-4)")
+                    throw new ArithmeticException("Value out of range (1-4)");
                 }
                 else
                 {
@@ -62,7 +62,7 @@ namespace CMP1903M_A01_2223
         //What do the values mean?
         public void Meaning()
         {
-            var Values = new Dictinary<int, string>()
+            var Values = new Dictionary<int, string>()
             {
                 {1, "Ace" },
                 {2, "Two" },
@@ -86,7 +86,7 @@ namespace CMP1903M_A01_2223
                 {3, "Clubs" },
                 {4, "Hearts" }
             };
-            Console.WriteLine($"{Values[value]} of {Suits[suit]} ");
+            Console.WriteLine($"{Values[mValue]} of {Suits[mSuit]} ");
         }
     }
 }
