@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+//Sumayyah Mohd Azmi 
 
 namespace CMP1903M_A01_2223
 {
@@ -22,6 +23,7 @@ namespace CMP1903M_A01_2223
         {
             //Initialise the card pack here
             pack = new List<Card>();
+            //For every suit, card values are needed
             for (int suit = 1; suit < 5; suit++)
             {
                 for (int value = 1; value < 14;  value++)
@@ -29,7 +31,6 @@ namespace CMP1903M_A01_2223
                     pack.Add(new Card(value, suit));
                 }
             }
-            Random random = new Random();
 
         }
 
@@ -114,6 +115,7 @@ namespace CMP1903M_A01_2223
             {
                 for (int i = 0; i < amount; i++)
                 {
+                    //removes last card from the pack for the specified amount
                     Card topCard = pack[0];
                     pack.RemoveAt(0);
                     dealtCards.Add(topCard);

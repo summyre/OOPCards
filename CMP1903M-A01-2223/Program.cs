@@ -10,20 +10,7 @@ namespace CMP1903M_A01_2223
     {
         static void Main(string[] args)
         {
-            //test pack initialisation
-            Pack pack = new Pack();
-
-            //testing Fisher-Yates shuffle
-            pack.shuffleCardPack(1);
-
-            //testing Riffle shuffle
-            pack.shuffleCardPack(2);
-
-            //testing one deal card
-            pack.deal();
-
-            //testing multiple deal cards
-            pack.dealCard(4);
+            Testing test = new Testing()   
         }
     }
 }
