@@ -27,6 +27,7 @@ namespace CMP1903M_A01_2223
             {
                 for (int value = 1; value < 14;  value++)
                 {
+                    //add each newly set value and suit as a card into a list
                     pack.Add(new Card(value, suit));
                 }
             }
@@ -41,6 +42,7 @@ namespace CMP1903M_A01_2223
             {
                 for (int n = pack.Count -1; n > 0; --n)
                 {
+                    //swap a random element with the last "unswapped" item in deck
                     int k = random.Next(n + 1);
                     var temp = pack[n];
                     pack[n] = pack[k];
@@ -53,17 +55,21 @@ namespace CMP1903M_A01_2223
             //Riffle Shuffle
             else if (typeOfShuffle == 2) 
             {
+                //split the deck into 2 halves
                 packFirst.AddRange(pack.GetRange(0, 26));
                 packSecond.AddRange(pack.GetRange(26, 26));
                 int i = 0;
                 int j = 0;
                 while (i != 52)
                 {
+                    //the cards are alternatively interleaved
+                    //set element in position i to the first half's element in position j
                     pack[i] = packFirst[j];
-                    i++;
+                    i++; //increase i by 1
+                    //set element in position i to the second half's element in position j
                     pack[i] = packSecond[j];
-                    i++;
-                    j++;
+                    i++; //increase i by 1
+                    j++; //increase j by 1
                 }
                 Console.WriteLine("SHUFFLED");
                 return true;
@@ -82,7 +88,8 @@ namespace CMP1903M_A01_2223
         public Card deal()
         {
             //Deals one card
-            dealtCards.Clear();
+            dealtCards.Clear(); //clears the list of dealt cards
+            //if the deck has 0 elements and therefore no cards to be dealt
             if (pack.Count == 0)
             {
                 Console.WriteLine("The deck is empty");
@@ -90,9 +97,9 @@ namespace CMP1903M_A01_2223
             }
             else
             {
-                Card topCard = pack[0];
-                pack.RemoveAt(0);
-                dealtCards.Add(topCard);
+                Card topCard = pack[0]; //sets the Card object to the first element of the list
+                pack.RemoveAt(0); //removes the card from the list
+                dealtCards.Add(topCard); //adds the card to a list of dealt cards
                 return topCard;
             }
 
@@ -100,12 +107,14 @@ namespace CMP1903M_A01_2223
         public List<Card> dealCard(int amount)
         {
             //Deals the number of cards specified by 'amount'
-            dealtCards.Clear();
+            dealtCards.Clear(); //clears the list of dealt cards
+            //if the deck has 0 elements and therefore no cards to be dealt
             if (pack.Count == 0)
             {
                 Console.WriteLine("The deck is empty");
                 return null;
             }
+            //if the deck has less than the amount stated and so has not enough cards to be dealt
             else if (pack.Count < amount)
             {
                 Console.WriteLine($"There are not enough cards in pack to deal {amount} cards");
@@ -116,10 +125,10 @@ namespace CMP1903M_A01_2223
                 for (int i = 0; i < amount; i++)
                 {
                     //removes last card from the pack for the specified amount
-                    Card topCard = pack[0];
-                    pack.RemoveAt(0);
-                    dealtCards.Add(topCard);
-                    topCard.Meaning();
+                    Card topCard = pack[0]; //sets the Card object to the first element of the list
+                    pack.RemoveAt(0); //removes the card from the original deck
+                    dealtCards.Add(topCard); //adds the card to a list of dealt cards
+                    topCard.Meaning(); //displays what card has been dealt
                 }
 
                 return dealtCards;
